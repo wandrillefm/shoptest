@@ -30,6 +30,7 @@
             --ombre: 0 2px 10px rgba(0,0,0,0.06);
             --rayon: 4px;
             --transition: 0.25s ease;
+            --color-border: #e5e5e5;
         }
 
         * {
@@ -320,7 +321,7 @@
             opacity: 0.8;
         }
 
-        /* ── GRILLE PRODUITS (liens <a>) ── */
+        /* ── GRILLE PRODUITS ── */
         #shop-content {
             display: none;
             flex: 1;
@@ -388,7 +389,179 @@
             font-weight: 500;
         }
 
-        /* ── LIGHTBOX (conservée mais non utilisée par la grille) ── */
+        /* ══════════════════════════════════════════ */
+        /*  PAGE PRODUIT DÉTAILLÉE (DAWN)           */
+        /* ══════════════════════════════════════════ */
+        #product-detail {
+            display: none;
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 68px;
+        }
+        .detail-back {
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gris);
+            transition: color 0.2s;
+            font-family: var(--font-body);
+        }
+        .detail-back:hover {
+            color: var(--navy);
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .detail-gallery {
+            position: relative;
+        }
+        .detail-main-img {
+            aspect-ratio: 1/1;
+            background: #f5f2eb;
+            overflow: hidden;
+            border-radius: var(--rayon);
+            border: 1px solid var(--color-border);
+        }
+        .detail-main-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.2s;
+        }
+        .detail-thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+        .detail-thumb {
+            width: 72px;
+            height: 72px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            opacity: 0.5;
+            transition: opacity 0.2s, border-color 0.2s;
+            flex-shrink: 0;
+        }
+        .detail-thumb.active {
+            opacity: 1;
+            border-color: var(--navy);
+        }
+        .detail-info h1 {
+            font-family: 'Uncial Antiqua', serif;
+            font-size: 2rem;
+            color: var(--navy);
+        }
+        .detail-desc {
+            color: var(--gris);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin: 12px 0;
+        }
+        .detail-price {
+            font-size: 1.8rem;
+            color: var(--or);
+            font-weight: 500;
+        }
+        .detail-divider {
+            margin: 24px 0;
+            border: none;
+            border-top: 1px solid var(--color-border);
+        }
+        .opt-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .opt-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gris);
+            font-weight: 500;
+        }
+        .opt-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .opt-btn {
+            border: 1px solid var(--color-border);
+            background: white;
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.75rem;
+            transition: all 0.15s;
+            border-radius: 4px;
+        }
+        .opt-btn:hover {
+            border-color: var(--navy);
+        }
+        .opt-btn.sel {
+            background: var(--navy);
+            color: white;
+            border-color: var(--navy);
+        }
+        .detail-add {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--navy);
+            color: white;
+            border: none;
+            font-family: 'Uncial Antiqua', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .detail-add:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .detail-add:hover:not(:disabled) {
+            background: #1e2755;
+        }
+        .detail-msg {
+            font-size: 0.75rem;
+            color: var(--gris);
+            text-align: center;
+            margin-top: 8px;
+            min-height: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .detail-info h1 {
+                font-size: 1.6rem;
+            }
+            .detail-thumb {
+                width: 56px;
+                height: 56px;
+            }
+            #product-detail {
+                padding: 20px 5%;
+                margin-top: 68px;
+            }
+        }
+
+        /* ── LIGHTBOX (conservée mais non utilisée par défaut) ── */
         .lb-overlay {
             position: fixed;
             inset: 0;
@@ -550,65 +723,6 @@
             font-size: 1.3rem;
             color: var(--or);
             font-weight: 500;
-        }
-        .opt-group {
-            display: flex;
-            flex-direction: column;
-            gap: .3rem;
-        }
-        .opt-label {
-            font-size: .6rem;
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            color: var(--gris);
-            border-bottom: 1px solid rgba(44, 55, 118, .06);
-            padding-bottom: .3rem;
-        }
-        .opt-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .4rem;
-        }
-        .opt-btn {
-            border: 1px solid rgba(44, 55, 118, .2);
-            background: white;
-            padding: .4rem 1rem;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: .7rem;
-            transition: .12s;
-            border-radius: 4px;
-        }
-        .opt-btn.sel {
-            background: var(--navy);
-            color: white;
-            border-color: var(--navy);
-        }
-        .lb-add {
-            width: 100%;
-            padding: .9rem;
-            background: var(--navy);
-            color: white;
-            border: none;
-            font-family: 'Uncial Antiqua', serif;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: auto;
-            border-radius: 4px;
-            transition: background .2s;
-        }
-        .lb-add:disabled {
-            opacity: .25;
-            cursor: not-allowed;
-        }
-        .lb-add:hover:not(:disabled) {
-            background: #1e2755;
-        }
-        .lb-msg {
-            font-size: .7rem;
-            color: var(--gris);
-            text-align: center;
-            min-height: 1.5rem;
         }
 
         /* ── PANIER ── */
@@ -1080,32 +1194,6 @@
             line-height: 1.9;
             margin-bottom: 32px;
         }
-        .partnership-stats {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            padding: 28px 0;
-            margin-bottom: 32px;
-            border-top: 1px solid rgba(248, 242, 231, 0.15);
-            border-bottom: 1px solid rgba(248, 242, 231, 0.15);
-        }
-        .partnership-stat {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            align-items: center;
-        }
-        .partnership-stat-number {
-            font-family: 'Uncial Antiqua', serif;
-            font-size: 2rem;
-            color: var(--or);
-        }
-        .partnership-stat-label {
-            font-size: 0.55rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: rgba(248, 242, 231, 0.55);
-        }
         .partnership-cta {
             display: inline-block;
             padding: 14px 40px;
@@ -1125,12 +1213,6 @@
         @media (max-width:768px) {
             .partnership-section {
                 padding: 60px 5% 40px;
-            }
-            .partnership-stats {
-                gap: 24px;
-            }
-            .partnership-stat-number {
-                font-size: 1.5rem;
             }
         }
 
@@ -1234,9 +1316,6 @@
             }
             .feature-card-title {
                 font-size: 1.2rem;
-            }
-            .hero {
-                background-position: 75% center;
             }
             .features-grid {
                 grid-template-columns: 1fr;
@@ -1370,22 +1449,6 @@
             letter-spacing: .05em;
             color: var(--bg);
         }
-        .footer-contact-text {
-            font-size: .7rem;
-            opacity: .5;
-            line-height: 1.8;
-            margin-bottom: 16px;
-            color: var(--bg);
-        }
-        .footer-email {
-            color: var(--or);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            transition: opacity .2s;
-            font-size: .7rem;
-        }
         .footer-bottom {
             max-width: 1200px;
             margin: 48px auto 0;
@@ -1447,33 +1510,6 @@
             .grid {
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 12px !important;
-            }
-            .lb-modal {
-                grid-template-columns: 1fr;
-                max-height: 90vh;
-                overflow-y: auto;
-                margin: auto;
-            }
-            .lb-main-img-wrap {
-                width: 100%;
-                aspect-ratio: 1/1;
-                flex: none;
-                max-height: 45vh;
-            }
-            .lb-config {
-                border-left: none;
-                border-top: 1px solid rgba(44, 55, 118, .08);
-                padding: 1.5rem;
-            }
-            .lb-config .opt-group {
-                gap: .2rem;
-            }
-            .lb-title {
-                font-size: 1.2rem;
-            }
-            .lb-overlay {
-                padding: .5rem;
-                align-items: flex-end;
             }
             .tab-bar {
                 display: flex;
@@ -1564,11 +1600,6 @@
             color: #6b6b6b;
             line-height: 1.7;
         }
-        .ck-desc a {
-            color: #2C3776;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
         .ck-actions {
             display: flex;
             align-items: center;
@@ -1614,12 +1645,17 @@
             background: #1e2755;
             border-color: #1e2755;
         }
+
+        /* ── Utilitaires ── */
+        .hidden-section {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!--  HTML – STRUCTURE (inchangée)            -->
+    <!--  HTML – STRUCTURE                        -->
     <!-- ═══════════════════════════════════════════ -->
 
     <header>
@@ -1658,7 +1694,7 @@
         </div>
 
         <!-- FEATURE CARDS -->
-        <div class="features-section">
+        <div class="features-section" id="featuresSection">
             <div class="features-header">
                 <div class="section-header-title">L'esprit Tradiscout</div>
                 <div class="section-header-sub">Vers le haut</div>
@@ -1701,6 +1737,7 @@
             </div>
         </div>
 
+        <!-- CATALOGUE + GRILLE -->
         <div id="catalogue">
             <div class="section-header">
                 <div class="section-header-title"></div>
@@ -1712,6 +1749,42 @@
             </div>
         </div>
 
+        <!-- ══════════════════════════════════════ -->
+        <!--  PAGE PRODUIT DÉTAILLÉE (JS ROUTER)  -->
+        <!-- ══════════════════════════════════════ -->
+        <div id="product-detail">
+            <button class="detail-back" onclick="closeProductDetail()">← Retour</button>
+            <div class="detail-grid">
+                <div class="detail-gallery">
+                    <div class="detail-main-img">
+                        <img id="detailImg" src="" alt="" />
+                    </div>
+                    <div class="detail-thumbs" id="detailThumbs"></div>
+                </div>
+                <div class="detail-info">
+                    <h1 id="detailTitle"></h1>
+                    <div class="detail-desc" id="detailDesc"></div>
+                    <div class="detail-price" id="detailPrice"></div>
+                    <hr class="detail-divider">
+                    <div class="opt-group">
+                        <span class="opt-label">Type</span>
+                        <div class="opt-row" id="detailTypes"></div>
+                    </div>
+                    <div class="opt-group">
+                        <span class="opt-label">Couleur</span>
+                        <div class="opt-row" id="detailColors"></div>
+                    </div>
+                    <div class="opt-group">
+                        <span class="opt-label">Taille</span>
+                        <div class="opt-row" id="detailSizes"></div>
+                    </div>
+                    <button class="detail-add" id="detailAdd" disabled onclick="addToCartFromDetail()">+ Ajouter au panier</button>
+                    <div class="detail-msg" id="detailMsg">Sélectionnez tous les éléments</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEGAL DOCS -->
         <div class="legal-docs">
             <a href="javascript:openLegalPage('livraison')">Livraison</a>
             <a href="javascript:openLegalPage('retours')">Retours</a>
@@ -1721,6 +1794,7 @@
             <a href="javascript:openLegalPage('mentions')">Mentions légales</a>
         </div>
 
+        <!-- REVIEWS -->
         <section class="reviews-section">
             <div class="reviews-wrap">
                 <div class="reviews-header">
@@ -1767,7 +1841,7 @@
         </section>
     </div>
 
-    <!-- LIGHTBOX (conservée mais plus déclenchée par la grille) -->
+    <!-- LIGHTBOX (conservée, mais non utilisée par défaut) -->
     <div class="lb-overlay" id="lbOverlay" onclick="lbClickOutside(event)">
         <div class="lb-modal">
             <div class="lb-gallery">
@@ -1820,13 +1894,13 @@
         </div>
     </div>
 
+    <!-- FAQ -->
     <section class="faq-section">
         <div class="faq-wrap">
             <div class="faq-header">
                 <h2 class="faq-title">FAQ</h2>
                 <p class="faq-subtitle">Questions fréquentes</p>
             </div>
-
             <div class="faq-item">
                 <button class="faq-question">
                     Quels sont les délais de livraison ?
@@ -1836,7 +1910,6 @@
                     Les commandes sont expédiées sous 1 à 2 jours ouvrés puis livrées en moyenne sous 5 à 6 jours ouvrés.
                 </div>
             </div>
-
             <div class="faq-item">
                 <button class="faq-question">
                     En quelle matière sont fait les tshirts et les sweats?
@@ -1846,7 +1919,6 @@
                     Les tshirts sont fabriqués en coton pour le confort et les sweats en 50% polyster et 50% coton pour la solidité.
                 </div>
             </div>
-
             <div class="faq-item">
                 <button class="faq-question">
                     Où sont fabriqués les vêtements ?
@@ -1922,8 +1994,7 @@
     </nav>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!--  JAVASCRIPT (MODIFICATION UNIQUEMENT      -->
-    <!--  DANS renderGrid)                        -->
+    <!--  JAVASCRIPT (avec ROUTING)               -->
     <!-- ═══════════════════════════════════════════ -->
 
     <script src="catalogue.js"></script>
@@ -1934,100 +2005,100 @@
             livraison: {
                 title: "Livraison",
                 content: `
-                    <h3>Livraison</h3>
-                    <p><strong>4 à 7 jours ouvrables</strong> - Offerte - Par DPD Group</p>
-                    <h3>Zones de livraison</h3>
-                    <p>Nous livrons en France métropolitaine, Corse, et dans les pays de l'Union Européenne. Pour les autres destinations, veuillez nous contacter à tradiscout@gmail.com</p>
-                    <h3>Suivi de votre colis</h3>
-                    <p>Un numéro de suivi vous sera communiqué par email dès l'expédition de votre commande. Vous pourrez suivre votre colis en temps réel sur le site de DPD.</p>
-                    <h3>En cas de problème de livraison</h3>
-                    <p>Si votre colis n'arrive pas à la date prévue, contactez-nous immédiatement DPD avec votre numéro de commande et votre numéro de suivi.</p>
-                `
+                        <h3>Livraison</h3>
+                        <p><strong>4 à 7 jours ouvrables</strong> - Offerte - Par DPD Group</p>
+                        <h3>Zones de livraison</h3>
+                        <p>Nous livrons en France métropolitaine, Corse, et dans les pays de l'Union Européenne. Pour les autres destinations, veuillez nous contacter à tradiscout@gmail.com</p>
+                        <h3>Suivi de votre colis</h3>
+                        <p>Un numéro de suivi vous sera communiqué par email dès l'expédition de votre commande. Vous pourrez suivre votre colis en temps réel sur le site de DPD.</p>
+                        <h3>En cas de problème de livraison</h3>
+                        <p>Si votre colis n'arrive pas à la date prévue, contactez-nous immédiatement DPD avec votre numéro de commande et votre numéro de suivi.</p>
+                    `
             },
             retours: {
                 title: "Retours et Échanges",
                 content: `
-                    <h3>Politique de retour</h3>
-                    <p>Vous avez <strong>14 jours</strong> à compter de la date de réception de votre commande pour retourner vos articles.</p>
-                    <h3>Conditions de retour</h3>
-                    <ul>
-                        <li>Les articles doivent être dans leur état d'origine</li>
-                        <li>Les produits doivent être intacts et n'avoir jamais été portés</li>
-                        <li>Les articles doivent être retournés dans leur emballage d'origine si possible</li>
-                    </ul>
-                    <h3>Remboursement</h3>
-                    <p>Une fois votre retour reçu et contrôlé, nous procéderons à un remboursement dans un délai de <strong>14 jours</strong>. Les frais de retour sont à votre charge, sauf cas de produit défectueux.</p>
-                    <h3>Échanges</h3>
-                    <p>Nous proposons également des échanges de taille ou de couleur gratuitement. Contactez-nous pour organiser votre échange.</p>
-                `
+                        <h3>Politique de retour</h3>
+                        <p>Vous avez <strong>14 jours</strong> à compter de la date de réception de votre commande pour retourner vos articles.</p>
+                        <h3>Conditions de retour</h3>
+                        <ul>
+                            <li>Les articles doivent être dans leur état d'origine</li>
+                            <li>Les produits doivent être intacts et n'avoir jamais été portés</li>
+                            <li>Les articles doivent être retournés dans leur emballage d'origine si possible</li>
+                        </ul>
+                        <h3>Remboursement</h3>
+                        <p>Une fois votre retour reçu et contrôlé, nous procéderons à un remboursement dans un délai de <strong>14 jours</strong>. Les frais de retour sont à votre charge, sauf cas de produit défectueux.</p>
+                        <h3>Échanges</h3>
+                        <p>Nous proposons également des échanges de taille ou de couleur gratuitement. Contactez-nous pour organiser votre échange.</p>
+                    `
             },
             delais: {
                 title: "Délais de Traitement",
                 content: `
-                    <h3>Traitement des commandes</h3>
-                    <p>Les commandes sont traitées dans un délai de <strong>1 à 2 jours ouvrables</strong>.</p>
-                    <h3>Livraison des commandes</h3>
-                    <p>Les commandes sont livrées dans un délai de <strong>4 à 7 jours ouvrables</strong>.</p>
-                    <h3>À noter</h3>
-                    <p>En période d'examens ou de vacances, les délais de traitement peuvent être prolongés jusqu'à 2 jours. (Et oui, pour ne pas que vous payez plus que nécéssaire les commandes sont traitées manuellement)</p>
-                `
+                        <h3>Traitement des commandes</h3>
+                        <p>Les commandes sont traitées dans un délai de <strong>1 à 2 jours ouvrables</strong>.</p>
+                        <h3>Livraison des commandes</h3>
+                        <p>Les commandes sont livrées dans un délai de <strong>4 à 7 jours ouvrables</strong>.</p>
+                        <h3>À noter</h3>
+                        <p>En période d'examens ou de vacances, les délais de traitement peuvent être prolongés jusqu'à 2 jours. (Et oui, pour ne pas que vous payez plus que nécéssaire les commandes sont traitées manuellement)</p>
+                    `
             },
             tarifs: {
                 title: "Tarifs et Frais",
                 content: `
-                    <h3>Prix des produits</h3>
-                    <p>Tous nos prix sont affichés TTC (toutes taxes comprises). Aucun frais supplémentaire ne sera ajouté à la caisse.</p>
-                    <h3>Frais de port</h3>
-                    <ul><li><strong>Livraison standard (France métropolitaine) :</strong> Offerte (Comprise dans le prix)</li></ul>
-                    <h3>Modes de paiement</h3>
-                    <p>Payements sécurisés avec Stripe :</p>
-                    <ul>
-                        <li>Carte bancaire (Visa, Mastercard, American Express)</li>
-                        <li>Link, Stripe</li>
-                    </ul>
-                    <h3>TVA</h3>
-                    <p>La TVA est calculée en fonction de votre adresse de livraison et est toujours incluse dans le prix final.</p>
-                `
+                        <h3>Prix des produits</h3>
+                        <p>Tous nos prix sont affichés TTC (toutes taxes comprises). Aucun frais supplémentaire ne sera ajouté à la caisse.</p>
+                        <h3>Frais de port</h3>
+                        <ul><li><strong>Livraison standard (France métropolitaine) :</strong> Offerte (Comprise dans le prix)</li></ul>
+                        <h3>Modes de paiement</h3>
+                        <p>Payements sécurisés avec Stripe :</p>
+                        <ul>
+                            <li>Carte bancaire (Visa, Mastercard, American Express)</li>
+                            <li>Link, Stripe</li>
+                        </ul>
+                        <h3>TVA</h3>
+                        <p>La TVA est calculée en fonction de votre adresse de livraison et est toujours incluse dans le prix final.</p>
+                    `
             },
             cgv: {
                 title: "Conditions Générales de Ventes",
                 content: `
-                    <h3>1. Champ d'application</h3>
-                    <p>Les présentes CGV régissent les relations entre Tradiscout et l'acheteur. Toute commande implique l'acceptation sans réserve de ces CGV.</p>
-                    <h3>2. Produits et tarifs</h3>
-                    <p>Les prix affichés sont en euros TTC. Tradiscout se réserve le droit de modifier les tarifs à tout moment.</p>
-                    <h3>3. Disponibilité des produits</h3>
-                    <p>Les produits proposés à la vente sont disponibles en quantité illimitée. L'impression se fait sur commande.</p>
-                    <h3>4. Commande et validation</h3>
-                    <p>La commande devient définitive après le paiement sécurisé. Un email de confirmation sera envoyé à l'acheteur.</p>
-                    <h3>5. Droit de rétractation</h3>
-                    <p>Conformément à la loi, l'acheteur dispose d'un délai de <strong>14 jours</strong> à compter de la réception pour exercer son droit de rétractation.</p>
-                    <h3>6. Responsabilité</h3>
-                    <p>Tradiscout n'est responsable que des défauts de conformité des produits livrés.</p>
-                    <h3>7. Propriété intellectuelle</h3>
-                    <p>Tous les éléments du site sont la propriété exclusive de Tradiscout. Toute reproduction sans autorisation est interdite.</p>
-                    <h3>8. Données personnelles</h3>
-                    <p>Les données personnelles sont traitées conformément au RGPD. Elles ne seront jamais cédées à des tiers.</p>
-                    <h3>10. Litiges et droit applicable</h3>
-                    <p>Les présentes CGV sont régies par la loi française. En cas de litige, contactez tradiscout@gmail.com.</p>
-                `
+                        <h3>1. Champ d'application</h3>
+                        <p>Les présentes CGV régissent les relations entre Tradiscout et l'acheteur. Toute commande implique l'acceptation sans réserve de ces CGV.</p>
+                        <h3>2. Produits et tarifs</h3>
+                        <p>Les prix affichés sont en euros TTC. Tradiscout se réserve le droit de modifier les tarifs à tout moment.</p>
+                        <h3>3. Disponibilité des produits</h3>
+                        <p>Les produits proposés à la vente sont disponibles en quantité illimitée. L'impression se fait sur commande.</p>
+                        <h3>4. Commande et validation</h3>
+                        <p>La commande devient définitive après le paiement sécurisé. Un email de confirmation sera envoyé à l'acheteur.</p>
+                        <h3>5. Droit de rétractation</h3>
+                        <p>Conformément à la loi, l'acheteur dispose d'un délai de <strong>14 jours</strong> à compter de la réception pour exercer son droit de rétractation.</p>
+                        <h3>6. Responsabilité</h3>
+                        <p>Tradiscout n'est responsable que des défauts de conformité des produits livrés.</p>
+                        <h3>7. Propriété intellectuelle</h3>
+                        <p>Tous les éléments du site sont la propriété exclusive de Tradiscout. Toute reproduction sans autorisation est interdite.</p>
+                        <h3>8. Données personnelles</h3>
+                        <p>Les données personnelles sont traitées conformément au RGPD. Elles ne seront jamais cédées à des tiers.</p>
+                        <h3>10. Litiges et droit applicable</h3>
+                        <p>Les présentes CGV sont régies par la loi française. En cas de litige, contactez tradiscout@gmail.com.</p>
+                    `
             },
             mentions: {
                 title: "Mentions Légales",
                 content: `
-                    <h3>Éditeur du site</h3>
-                    <p><strong>Tradiscout</strong><br>SIRET : Particulier<br>Forme juridique : Entreprise individuelle</p>
-                    <h3>Directeur de publication</h3>
-                    <p>Wandrille Fernex de Mongex</p>
-                    <h3>Coordonnées</h3>
-                    <p><strong>Email :</strong> tradiscout@gmail.com</p>
-                    <h3>Hébergement</h3>
-                    <p>Vercel Inc.</p>
-                    <h3>Droit d'auteur</h3>
-                    <p>© 2026 Tradiscout. Tous droits réservés.</p>
-                    <h3>Protection des données</h3>
-                    <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles. Contactez tradiscout@gmail.com.</p>
-                `
+                        <h3>Éditeur du site</h3>
+                        <p><strong>Tradiscout</strong><br>SIRET : Particulier<br>Forme juridique : Entreprise individuelle</p>
+                        <h3>Directeur de publication</h3>
+                        <p>Wandrille Fernex de Mongex</p>
+                        <h3>Coordonnées</h3>
+                        <p><strong>Email :</strong> tradiscout@gmail.com</p>
+                        <h3>Hébergement</h3>
+                        <p>Vercel Inc.</p>
+                        <h3>Droit d'auteur</h3>
+                        <p>© 2026 Tradiscout. Tous droits réservés.</p>
+                        <h3>Protection des données</h3>
+                        <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles. Contactez tradiscout@gmail.com.</p>
+                    `
             }
         };
 
@@ -2069,76 +2140,11 @@
         let reviewDir = 1;
         let autoScrollTimer = null;
 
-        function calculateAverageRating() {
-            const sum = REVIEWS.reduce((acc, r) => acc + r.stars, 0);
-            const avg = (sum / REVIEWS.length).toFixed(1);
-            return parseFloat(avg);
-        }
-
-        function autoScrollReviews() {
-            reviewIndex = (reviewIndex + 1) % REVIEWS.length;
-            renderReviewCard(1);
-            renderReviewDots();
-        }
-
-        function startAutoScroll() {
-            clearInterval(autoScrollTimer);
-            autoScrollTimer = setInterval(autoScrollReviews, 5000);
-        }
-
-        function stopAutoScroll() {
-            clearInterval(autoScrollTimer);
-        }
-
         function renderReviews() {
             const sum = REVIEWS.reduce((acc, r) => acc + r.stars, 0);
             const avg = parseFloat((sum / REVIEWS.length).toFixed(1));
             document.getElementById('avgRating').textContent = avg;
             document.getElementById('starsFill').style.width = (avg / 5 * 100) + '%';
-        }
-
-        function renderReviewCard(dir) {
-            const wrap = document.getElementById('reviewCardWrap');
-            const r = REVIEWS[reviewIndex];
-            const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
-            const animClass = (dir === -1) ? 'slide-left' : '';
-
-            wrap.innerHTML = `
-                <div class="review-card ${animClass}">
-                    <div class="review-top">
-                        <div class="review-author">
-                            <div class="review-name">${r.name}</div>
-                            <div class="review-date">${r.date}</div>
-                        </div>
-                        <div class="review-stars">${stars}</div>
-                    </div>
-                    <div class="review-text">${r.text}</div>
-                </div>
-            `;
-        }
-
-        function renderReviewDots() {
-            const dotsEl = document.getElementById('reviewsDots');
-            dotsEl.innerHTML = REVIEWS.map((_, i) =>
-                `<button class="reviews-dot ${i === reviewIndex ? 'active' : ''}" onclick="reviewGoTo(${i})"></button>`
-            ).join('');
-        }
-
-        function reviewNav(dir) {
-            stopAutoScroll();
-            reviewIndex = (reviewIndex + dir + REVIEWS.length) % REVIEWS.length;
-            renderReviewCard(dir);
-            renderReviewDots();
-            startAutoScroll();
-        }
-
-        function reviewGoTo(i) {
-            stopAutoScroll();
-            const dir = i >= reviewIndex ? 1 : -1;
-            reviewIndex = i;
-            renderReviewCard(dir);
-            renderReviewDots();
-            startAutoScroll();
         }
 
         /* ── ADMIN / CURTAIN ── */
@@ -2167,6 +2173,9 @@
             renderGrid();
             renderCart();
             renderReviews();
+
+            // Démarrer le routage une fois le shop débloqué
+            handleRouting();
         }
 
         window.onload = function() {
@@ -2174,7 +2183,196 @@
             window.addEventListener('resize', function() {
                 renderReviews();
             });
+            window.addEventListener('popstate', handleRouting);
         };
+
+        /* ──────────────────────────────────────────────
+           ROUTAGE VERS LA PAGE PRODUIT (SPA)
+           ────────────────────────────────────────────── */
+        let currentSlug = null;
+
+        function handleRouting() {
+            const path = window.location.pathname;
+            const match = path.match(/^\/produits\/(.+)$/);
+            if (match) {
+                const slug = match[1];
+                if (currentSlug !== slug) {
+                    openProductDetail(slug, true);
+                }
+            } else {
+                if (currentSlug !== null) {
+                    closeProductDetail(true);
+                }
+            }
+        }
+
+        function openProductDetail(slug, fromPopstate = false) {
+            const design = DESIGNS.find(d => d.key === slug);
+            if (!design) {
+                // Si le produit n'existe pas, on revient à l'accueil
+                if (!fromPopstate) {
+                    window.history.pushState(null, '', '/');
+                    closeProductDetail(true);
+                }
+                return;
+            }
+
+            currentSlug = slug;
+
+            // Masquer la grille, les features, etc.
+            document.getElementById('featuresSection').classList.add('hidden-section');
+            document.getElementById('catalogue').classList.add('hidden-section');
+            document.getElementById('product-detail').style.display = 'block';
+
+            // Mettre à jour l'URL
+            if (!fromPopstate) {
+                window.history.pushState({ slug: slug }, '', '/produits/' + slug);
+            }
+
+            // Rendre le détail
+            renderProductDetail(design);
+        }
+
+        function closeProductDetail(fromPopstate = false) {
+            currentSlug = null;
+            document.getElementById('product-detail').style.display = 'none';
+            document.getElementById('featuresSection').classList.remove('hidden-section');
+            document.getElementById('catalogue').classList.remove('hidden-section');
+
+            if (!fromPopstate) {
+                window.history.pushState(null, '', '/');
+            }
+
+            // Réinitialiser l'état du produit
+            detailState.type = null;
+            detailState.color = null;
+            detailState.size = null;
+        }
+
+        /* ── ÉTAT DU PRODUIT DÉTAILLÉ ── */
+        const detailState = {
+            designKey: null,
+            type: null,
+            color: null,
+            size: null,
+            photoIndex: 0
+        };
+
+        function renderProductDetail(design) {
+            detailState.designKey = design.key;
+            detailState.photoIndex = 0;
+            detailState.type = design.types.includes('tshirt') ? 'tshirt' : design.types[0];
+            detailState.color = design.colors.includes('blanc') ? 'blanc' : design.colors[0];
+            detailState.size = null;
+
+            // Infos générales
+            document.getElementById('detailTitle').textContent = design.label;
+            document.getElementById('detailDesc').textContent = design.description;
+            updateDetailPrice();
+
+            // Images
+            const mainImg = document.getElementById('detailImg');
+            mainImg.src = 'images/' + design.images[0];
+            mainImg.style.opacity = '1';
+
+            const thumbsContainer = document.getElementById('detailThumbs');
+            thumbsContainer.innerHTML = design.images.map((img, i) =>
+                `<img class="detail-thumb ${i === 0 ? 'active' : ''}" src="images/${img}" onclick="detailGoPhoto(${i})" />`
+            ).join('');
+
+            // Options
+            renderDetailOptions(design);
+
+            // Vérifier si tout est sélectionné
+            updateDetailAddButton();
+        }
+
+        function detailGoPhoto(index) {
+            const design = DESIGNS.find(d => d.key === detailState.designKey);
+            if (!design) return;
+            detailState.photoIndex = index;
+            const mainImg = document.getElementById('detailImg');
+            mainImg.style.opacity = '0';
+            setTimeout(() => {
+                mainImg.src = 'images/' + design.images[index];
+                mainImg.style.opacity = '1';
+            }, 150);
+
+            // Mettre à jour les miniatures
+            document.querySelectorAll('.detail-thumb').forEach((el, i) => {
+                el.classList.toggle('active', i === index);
+            });
+        }
+
+        function renderDetailOptions(design) {
+            // Types
+            document.getElementById('detailTypes').innerHTML = TYPES
+                .filter(t => design.types.includes(t.id))
+                .map(t => `<button class="opt-btn ${t.id === detailState.type ? 'sel' : ''}" onclick="detailSet('type','${t.id}')">${t.label}</button>`)
+                .join('');
+
+            // Couleurs
+            document.getElementById('detailColors').innerHTML = COLORS
+                .filter(c => design.colors.includes(c.id))
+                .map(c => `<button class="opt-btn ${c.id === detailState.color ? 'sel' : ''}" onclick="detailSet('color','${c.id}')">${c.label}</button>`)
+                .join('');
+
+            // Tailles
+            document.getElementById('detailSizes').innerHTML = SIZES
+                .map(s => `<button class="opt-btn ${s === detailState.size ? 'sel' : ''}" onclick="detailSet('size','${s}')">${s}</button>`)
+                .join('');
+
+            updateDetailAddButton();
+        }
+
+        function detailSet(category, value) {
+            detailState[category] = value;
+            // Re-rendre les options pour mettre à jour les classes "sel"
+            const design = DESIGNS.find(d => d.key === detailState.designKey);
+            if (design) renderDetailOptions(design);
+            // Mettre à jour le prix (si le type change)
+            if (category === 'type') updateDetailPrice();
+            updateDetailAddButton();
+        }
+
+        function updateDetailPrice() {
+            const price = getProductPrice(detailState.designKey, detailState.type);
+            document.getElementById('detailPrice').textContent = price ? price + ' €' : '';
+        }
+
+        function updateDetailAddButton() {
+            const allSelected = detailState.type && detailState.color && detailState.size;
+            const btn = document.getElementById('detailAdd');
+            const msg = document.getElementById('detailMsg');
+            btn.disabled = !allSelected;
+            msg.textContent = allSelected ? '' : 'Sélectionnez tous les éléments';
+        }
+
+        /* ── AJOUT AU PANIER DEPUIS LA PAGE PRODUIT ── */
+        function addToCartFromDetail() {
+            if (!detailState.type || !detailState.color || !detailState.size) return;
+
+            const design = DESIGNS.find(d => d.key === detailState.designKey);
+            const type = TYPES.find(t => t.id === detailState.type);
+            const color = COLORS.find(c => c.id === detailState.color);
+            const price = getProductPrice(detailState.designKey, detailState.type);
+
+            cart.push({
+                id: Date.now(),
+                design: design.id,
+                type: detailState.type,
+                color: detailState.color,
+                size: detailState.size,
+                typeLabel: type.label,
+                designLabel: design.label,
+                colorLabel: color.label,
+                price: price,
+            });
+
+            renderCart();
+            closeProductDetail();
+            openCart();
+        }
 
         /* ── COLLECTIONS & GRILLE ── */
         let activeCollection = COLLECTIONS[0].id;
@@ -2192,9 +2390,6 @@
             renderGrid();
         }
 
-        /* ════════════════════════════════════════════
-           ║  MODIFICATION ICI : liens <a>         ║
-           ════════════════════════════════════════════ */
         function renderGrid() {
             const grid = document.getElementById('grid');
             const filtered = DESIGNS.filter(d => d.collection === activeCollection);
@@ -2202,7 +2397,7 @@
             grid.innerHTML = filtered.map(d => {
                 const minPrice = Math.min(...d.types.map(typeId => getProductPrice(d.key, typeId)));
                 return `
-                        <a href="/produits/${d.key}" class="grid-card">
+                        <a href="/produits/${d.key}" class="grid-card" onclick="event.preventDefault(); openProductDetail('${d.key}')">
                             <div class="grid-card-img-wrap">
                                 <img src="images/${d.images[0]}" onerror="this.style.opacity='0'" />
                             </div>
@@ -2215,110 +2410,36 @@
             }).join('');
         }
 
-        /* ── LIGHTBOX (non utilisée par la grille, mais conservée) ── */
+        /* ── LIGHTBOX (conservée pour compatibilité, non utilisée) ── */
         const lb = { design: null, type: null, color: null, size: null, photoIndex: 0 };
 
         function openLb(designKey) {
-            const d = DESIGNS.find(x => x.key === designKey);
-            lb.design = designKey;
-            lb.photoIndex = 0;
-            lb.type = d.types.includes('tshirt') ? 'tshirt' : d.types[0];
-            lb.color = d.colors.includes('blanc') ? 'blanc' : d.colors[0];
-            lb.size = null;
-            renderLb();
-            document.getElementById('lbOverlay').classList.add('open');
+            // On redirige vers la page produit à la place
+            openProductDetail(designKey);
         }
 
         function closeLb() { document.getElementById('lbOverlay').classList.remove('open'); }
 
         function lbClickOutside(e) { if (e.target === document.getElementById('lbOverlay')) closeLb(); }
 
-        function renderLb() {
-            const d = DESIGNS.find(x => x.key === lb.design);
-            const t = TYPES.find(x => x.id === lb.type);
-            const price = getProductPrice(lb.design, lb.type);
+        function renderLb() { /* gardé vide pour éviter les erreurs */ }
 
-            document.getElementById('lbTitle').textContent = d.label;
-            document.getElementById('lbDesc').textContent = d.description;
-            document.getElementById('lbPrice').textContent = price ? price + ' €' : '';
+        function lbSet(cat, val) {}
 
-            document.getElementById('lbTypes').innerHTML = TYPES
-                .filter(x => d.types.includes(x.id))
-                .map(x => `<button class="opt-btn ${x.id === lb.type ? 'sel' : ''}" onclick="lbSet('type','${x.id}')">${x.label}</button>`)
-                .join('');
+        function lbNavPhoto(dir) {}
 
-            document.getElementById('lbColors').innerHTML = COLORS
-                .filter(x => d.colors.includes(x.id))
-                .map(x => `<button class="opt-btn ${x.id === lb.color ? 'sel' : ''}" onclick="lbSet('color','${x.id}')">${x.label}</button>`)
-                .join('');
+        function lbGoPhoto(i) {}
 
-            document.getElementById('lbSizes').innerHTML = SIZES
-                .map(s => `<button class="opt-btn ${s === lb.size ? 'sel' : ''}" onclick="lbSet('size','${s}')">${s}</button>`)
-                .join('');
-
-            document.getElementById('lbAdd').disabled = !(lb.type && lb.color && lb.size);
-            updateLbGallery();
-        }
-
-        function lbSet(cat, val) { lb[cat] = val;
-            renderLb(); }
-
-        function lbNavPhoto(dir) {
-            const d = DESIGNS.find(x => x.key === lb.design);
-            lb.photoIndex = (lb.photoIndex + dir + d.images.length) % d.images.length;
-            updateLbGallery();
-        }
-
-        function lbGoPhoto(i) { lb.photoIndex = i;
-            updateLbGallery(); }
-
-        function updateLbGallery() {
-            const d = DESIGNS.find(x => x.key === lb.design);
-            const img = document.getElementById('lbImg');
-            const src = 'images/' + d.images[lb.photoIndex];
-
-            const currentSrc = img.getAttribute('src');
-            if (currentSrc !== src) {
-                img.style.opacity = '0';
-                setTimeout(() => { img.src = src;
-                    img.style.opacity = '1'; }, 120);
-            }
-
-            const multi = d.images.length > 1;
-            document.getElementById('lbPrev').style.display = multi ? 'block' : 'none';
-            document.getElementById('lbNext').style.display = multi ? 'block' : 'none';
-
-            const thumbsEl = document.getElementById('lbThumbs');
-            thumbsEl.style.display = multi ? 'flex' : 'none';
-            if (multi) {
-                thumbsEl.innerHTML = d.images.map((img, i) =>
-                    `<img class="lb-thumb ${i === lb.photoIndex ? 'active' : ''}" src="images/${img}" onclick="lbGoPhoto(${i})" />`
-                ).join('');
-            }
-        }
+        function updateLbGallery() {}
 
         /* ── PANIER ── */
         let cart = [];
 
         function addToCart() {
-            const t = TYPES.find(x => x.id === lb.type);
-            const d = DESIGNS.find(x => x.key === lb.design);
-            const c = COLORS.find(x => x.id === lb.color);
-            const price = getProductPrice(lb.design, lb.type);
-            cart.push({
-                id: Date.now(),
-                design: d.id,
-                type: lb.type,
-                color: lb.color,
-                size: lb.size,
-                typeLabel: t.label,
-                designLabel: d.label,
-                colorLabel: c.label,
-                price: price,
-            });
-            renderCart();
-            closeLb();
-            openCart();
+            // Rediriger vers la page produit
+            if (lb.design) {
+                openProductDetail(lb.design);
+            }
         }
 
         function removeItem(id) { cart = cart.filter(i => i.id !== id);
@@ -2403,7 +2524,6 @@
             btn.disabled = true;
             const pct = promoState.discountPercent || 0;
             const itemsToSend = cart.map(i => ({ ...i, price: Math.round(i.price * (1 - pct) * 10) / 10 }));
-            console.log('itemsToSend:', JSON.stringify(itemsToSend));
 
             try {
                 const body = { items: itemsToSend };
