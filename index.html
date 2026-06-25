@@ -222,6 +222,12 @@
 .lb-add { width:100%;padding:.85rem;background:var(--navy);color:white;border:none;font-family:'Uncial Antiqua',serif;font-size:1rem;cursor:pointer;margin-top:auto; }
 .lb-add:disabled { opacity:.22;cursor:not-allowed; }
 .lb-msg { font-size:.6rem;color:gray;text-align:center; }
+@media (max-width: 768px) {
+    .lb-modal { grid-template-columns: 1fr; width: 100vw; height: auto; }
+    .lb-overlay { padding: 0; align-items: flex-start; }
+    .lb-gallery { max-height: 60vw; }
+    .lb-config { overflow-y: visible; }
+}
 
         /* ── CART ── */
         .cart-btn-nav { background:none;border:none;cursor:pointer;color:var(--navy);font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:lowercase;opacity:.4;transition:.2s;display:flex;align-items:center;gap:6px;padding:0; }
