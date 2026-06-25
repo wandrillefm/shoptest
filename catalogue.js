@@ -13,19 +13,25 @@ const TYPES = [
     id: 'tshirt', 
     label: 'T-Shirt', 
     code: '1', 
-    price: { scouts: 20.25, premium: 25.2 }
+    price: { scouts: 20.25, premium: 25.2 },
+    description: 'Classique et intemporel, parfait pour afficher vos convictions au quotidien.',
+    features: ['100% Coton', 'Coupe Regular', 'Confortable']
   },
   { 
     id: 'sweat',  
     label: 'Sweat',  
     code: '2', 
-    price: { scouts: 43.5, premium: 45.7 } 
+    price: { scouts: 43.5, premium: 45.7 },
+    description: 'Chaud et douillet, idéal pour les jours froids avec un style décontracté.',
+    features: ['Coton/Polyester', 'Coupe Relaxe', 'Durable']
   },
   { 
     id: 'hoodie', 
     label: 'Hoodie', 
     code: '3', 
-    price: { scouts: 49.5, premium: 52.9 } 
+    price: { scouts: 49.5, premium: 52.9 },
+    description: 'Tendance et couvrante, le choix parfait pour un style moderne et confortable.',
+    features: ['Coton/Polyester', 'Coupe Casual', 'Longue Durée']
   }
 ];
 
